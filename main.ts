@@ -1,14 +1,20 @@
+/**
+ * Press the correct arrow key as it hits the hollow key and get points! If you press the key too early or if you miss, you will lose a life. The levels will get increasing difficult.
+ */
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (full2 == 1) {
         if (up.overlapsWith(hollowUp)) {
             up.destroy(effects.disintegrate, 100)
             full2 = 0
             info.changeScoreBy(1)
+            music.playMelody("C D E F G A B C5 ", 1250)
         } else if (up.y < 50) {
             info.changeLifeBy(-1)
+            music.zapped.play()
         }
     } else {
         info.changeLifeBy(-1)
+        music.zapped.play()
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -17,11 +23,14 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
             left.destroy(effects.disintegrate, 100)
             full1 = 0
             info.changeScoreBy(1)
+            music.playMelody("C - D - E - F - ", 1250)
         } else if (left.y < 50) {
             info.changeLifeBy(-1)
+            music.zapped.play()
         }
     } else {
         info.changeLifeBy(-1)
+        music.zapped.play()
     }
 })
 function touchWall (mySprite: Sprite) {
@@ -147,11 +156,14 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
             right.destroy(effects.disintegrate, 100)
             full4 = 0
             info.changeScoreBy(1)
+            music.playMelody("C E A C5 C E A C5 ", 1250)
         } else if (right.y < 50) {
             info.changeLifeBy(-1)
+            music.zapped.play()
         }
     } else {
         info.changeLifeBy(-1)
+        music.zapped.play()
     }
 })
 function arrowDirection (arrowX: number, arrowY: number, arrowName: Sprite) {
@@ -167,11 +179,14 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
             down.destroy(effects.disintegrate, 100)
             full3 = 0
             info.changeScoreBy(1)
+            music.jumpUp.play()
         } else if (down.y < 50) {
             info.changeLifeBy(-1)
+            music.zapped.play()
         }
     } else {
         info.changeLifeBy(-1)
+        music.zapped.play()
     }
 })
 info.onLifeZero(function () {
@@ -181,9 +196,6 @@ scene.onHitWall(SpriteKind.Projectile, function (sprite, location) {
     sprite.destroy(effects.fire, 100)
     info.changeLifeBy(-1)
 })
-/**
- * Press the correct arrow key as it hits the hollow key and get points! If you press the key too early or if you miss, you will lose a life. The levels will get increasing difficult.
- */
 let placeholder4 = 0
 let placeholder2 = 0
 let placeholder1 = 0
@@ -213,6 +225,7 @@ full4 = 0
 placeholder3 = 0
 let spawnSpeed = 500
 ready = true
+music.setVolume(20)
 info.setScore(0)
 info.setLife(5)
 speed = 80
@@ -298,6 +311,7 @@ game.onUpdate(function () {
             left.destroy()
             placeholder1 = 1
             info.changeLifeBy(-1)
+            music.buzzer.play()
         }
         if (placeholder1 == 1) {
             full1 = 0
@@ -309,6 +323,7 @@ game.onUpdate(function () {
             up.destroy()
             placeholder2 = 1
             info.changeLifeBy(-1)
+            music.buzzer.play()
         }
         if (placeholder2 == 1) {
             full2 = 0
@@ -320,6 +335,7 @@ game.onUpdate(function () {
             down.destroy()
             placeholder3 = 1
             info.changeLifeBy(-1)
+            music.buzzer.play()
         }
         if (placeholder3 == 1) {
             full3 = 0
@@ -331,6 +347,7 @@ game.onUpdate(function () {
             right.destroy()
             placeholder4 = 1
             info.changeLifeBy(-1)
+            music.buzzer.play()
         }
         if (placeholder4 == 1) {
             full4 = 0
