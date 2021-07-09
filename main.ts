@@ -1,18 +1,26 @@
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (up.overlapsWith(hollowUp) && full2 == 1) {
-        up.destroy(effects.disintegrate, 100)
-        full2 = 0
-        info.changeScoreBy(1)
-    } else if (up.y < 50) {
+    if (full2 == 1) {
+        if (up.overlapsWith(hollowUp)) {
+            up.destroy(effects.disintegrate, 100)
+            full2 = 0
+            info.changeScoreBy(1)
+        } else if (up.y < 50) {
+            info.changeLifeBy(-1)
+        }
+    } else {
         info.changeLifeBy(-1)
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (left.overlapsWith(hollowLeft) && full1 == 1) {
-        left.destroy(effects.disintegrate, 100)
-        full1 = 0
-        info.changeScoreBy(1)
-    } else if (left.y < 50) {
+    if (full1 == 1) {
+        if (left.overlapsWith(hollowLeft)) {
+            left.destroy(effects.disintegrate, 100)
+            full1 = 0
+            info.changeScoreBy(1)
+        } else if (left.y < 50) {
+            info.changeLifeBy(-1)
+        }
+    } else {
         info.changeLifeBy(-1)
     }
 })
@@ -134,11 +142,15 @@ function spawnArrow () {
     }
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (right.overlapsWith(hollowRight) && full4 == 1) {
-        right.destroy(effects.disintegrate, 100)
-        full4 = 0
-        info.changeScoreBy(1)
-    } else if (right.y < 50) {
+    if (full4 == 1) {
+        if (right.overlapsWith(hollowRight)) {
+            right.destroy(effects.disintegrate, 100)
+            full4 = 0
+            info.changeScoreBy(1)
+        } else if (right.y < 50) {
+            info.changeLifeBy(-1)
+        }
+    } else {
         info.changeLifeBy(-1)
     }
 })
@@ -150,11 +162,15 @@ function arrowDirection (arrowX: number, arrowY: number, arrowName: Sprite) {
     arrowName.setFlag(SpriteFlag.StayInScreen, true)
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (down.overlapsWith(hollowDown) && full3 == 1) {
-        down.destroy(effects.disintegrate, 100)
-        full3 = 0
-        info.changeScoreBy(1)
-    } else if (down.y < 50) {
+    if (full3 == 1) {
+        if (down.overlapsWith(hollowDown)) {
+            down.destroy(effects.disintegrate, 100)
+            full3 = 0
+            info.changeScoreBy(1)
+        } else if (down.y < 50) {
+            info.changeLifeBy(-1)
+        }
+    } else {
         info.changeLifeBy(-1)
     }
 })
